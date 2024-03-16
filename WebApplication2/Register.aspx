@@ -110,7 +110,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <br />
-                <asp:Button Text="REGISTER" ID="btnsave" CssClass="btn btn-primary" Width="200" runat="server"></asp:Button>
+                <asp:Button Text="REGISTER" ID="btnsave" CssClass="btn btn-primary" Width="200" runat="server" OnClick="btnsave_Click"></asp:Button>
             </div>
         </div>
 </asp:Content>

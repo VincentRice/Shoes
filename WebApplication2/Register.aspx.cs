@@ -51,7 +51,7 @@ namespace WebApplication2
             }
 
             
-            byte[] hashedPassword = HashPassword(password);
+            
 
             
             string connectionString = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
@@ -59,10 +59,10 @@ namespace WebApplication2
             
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO [USER] (UserName, UserPassword, UserEmail) VALUES (@Username, @Password, @Email)";
+                string query = "INSERT INTO [USER] (UserName, UserPassword, UserEmail) VALUES (@Username, CONVERT(VARBINARY(MAX), @Password), @Email)";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Username", username);
-                command.Parameters.AddWithValue("@Password", hashedPassword); 
+                command.Parameters.AddWithValue("@Password", password);
                 command.Parameters.AddWithValue("@Email", email);
 
                 try
@@ -78,15 +78,6 @@ namespace WebApplication2
             }
         }
 
-        
-        private byte[] HashPassword(string password)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                return hashedBytes;
-            }
-        }
 
     }
 }
