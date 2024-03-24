@@ -113,4 +113,7 @@
                 <asp:Button Text="REGISTER" ID="btnsave" CssClass="btn btn-primary" Width="200" runat="server" OnClick="btnsave_Click"></asp:Button>
             </div>
         </div>
+    <div class="sign-in">
+        Already have an account? <a href="Login.aspx">Sign in</a>
+    </div>
 </asp:Content>
